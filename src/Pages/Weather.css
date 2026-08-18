@@ -1,0 +1,24 @@
+.weather-page { min-height: calc(100vh - 72px); padding: 56px 20px; color: #e8f1ff; background: radial-gradient(circle at 15% 15%, rgba(56,189,248,.28), transparent 30%), linear-gradient(145deg, #071426, #153c66); }
+.weather-shell { width: min(680px, 100%); margin: 0 auto; }
+.weather-header { margin-bottom: 28px; }
+.weather-header h1 { margin: 5px 0 8px; font-size: clamp(2.2rem, 6vw, 4.2rem); line-height: 1; }
+.weather-header > p:last-child, .description { color: #b9cae1; }
+.eyebrow { color: #7dd3fc; font-size: .75rem; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; }
+.weather-search { display: flex; gap: 10px; padding: 8px; border: 1px solid #ffffff29; border-radius: 18px; background: #ffffff1a; }
+.weather-search input { min-width: 0; flex: 1; border: 0; outline: 0; padding: 13px 14px; color: white; background: transparent; }
+.weather-search button { border: 0; border-radius: 12px; padding: 0 22px; color: #08223d; background: #7dd3fc; font-weight: 800; }
+.weather-card { margin-top: 24px; padding: 32px; border: 1px solid #ffffff2e; border-radius: 28px; background: #ffffff18; }
+.weather-location { display: flex; justify-content: space-between; }
+.weather-location img { width: 90px; }
+.temperature { margin: 14px 0 28px; font-size: 6rem; font-weight: 200; }
+.temperature span { font-size: .35em; vertical-align: top; }
+.weather-details { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+.weather-details div { display: flex; flex-direction: column; padding: 14px; border-radius: 14px; background: #04142747; }
+.weather-details span { color: #9fb5cd; font-size: .75rem; }
+.weather-empty { display: grid; place-items: center; min-height: 280px; text-align: center; }
+.weather-error { padding: 13px; color: #fee2e2; background: #7f1d1d59; }
+.weather-loader { width: 46px; height: 46px; margin: 110px auto; border: 4px solid #ffffff33; border-top-color: #7dd3fc; border-radius: 50%; animation: spin .8s linear infinite; }
+.weather-credit { text-align: center; color: #8099b5; font-size: .75rem; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); }
+@keyframes spin { to { transform: rotate(360deg); } }
+@media (max-width: 560px) { .weather-search { flex-direction: column; } .weather-search button { padding: 13px; } .weather-details { grid-template-columns: repeat(2, 1fr); } }
