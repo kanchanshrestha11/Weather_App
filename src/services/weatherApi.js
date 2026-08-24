@@ -2,11 +2,11 @@ const WEATHER_URL = "https://api.openweathermap.org/data/2.5/weather";
 const GEOCODING_URL = "https://api.openweathermap.org/geo/1.0/direct";
 
 function getApiKey() {
-  const apiKey = import.meta.env.VITE_OPENWEATHER_API_KEY;
+  const apiKey = "413dbb0e7bf90ca5e9ae0f5de3d1bdab";
 
-  if (!apiKey) {
+  if (apiKey === "413dbb0e7bf90ca5e9ae0f5de3d1bdab") {
     throw new Error(
-      "API key is missing. Add VITE_OPENWEATHER_API_KEY to your .env file.",
+      "API key is missing. Add your OpenWeather API key in weatherApi.js.",
     );
   }
 
