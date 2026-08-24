@@ -17,8 +17,7 @@ function About() {
 
         <section className="mt-12 grid gap-5 sm:grid-cols-3">
           <article className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-            <span className="text-3xl" aria-hidden="true">📍</span>
-            <h2 className="mt-4 text-lg font-bold text-slate-900">
+            <h2 className="text-lg font-bold text-slate-900">
               Local weather
             </h2>
             <p className="mt-2 leading-7 text-slate-600">
@@ -28,8 +27,7 @@ function About() {
           </article>
 
           <article className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-            <span className="text-3xl" aria-hidden="true">🔎</span>
-            <h2 className="mt-4 text-lg font-bold text-slate-900">
+            <h2 className="text-lg font-bold text-slate-900">
               Worldwide search
             </h2>
             <p className="mt-2 leading-7 text-slate-600">
@@ -39,8 +37,7 @@ function About() {
           </article>
 
           <article className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-            <span className="text-3xl" aria-hidden="true">☁️</span>
-            <h2 className="mt-4 text-lg font-bold text-slate-900">
+            <h2 className="text-lg font-bold text-slate-900">
               Useful forecasts
             </h2>
             <p className="mt-2 leading-7 text-slate-600">

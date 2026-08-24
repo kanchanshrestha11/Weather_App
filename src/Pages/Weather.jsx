@@ -1,7 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
 import WeatherCard from "../Components/WeatherCard";
 import WeatherSearch from "../Components/WeatherSearch";
-import { fetchWeather } from "../features/weather/weatherSlice";
+import {
+  fetchLocalWeather,
+  fetchWeather,
+} from "../features/weather/weatherSlice";
 import "./Weather.css";
 
 function Weather() {
@@ -20,11 +23,13 @@ function Weather() {
         <WeatherSearch
           loading={loading}
           onSearch={(city) => dispatch(fetchWeather(city))}
+          onSelectSuggestion={(coordinates) =>
+            dispatch(fetchLocalWeather(coordinates))
+          }
         />
         {error && <p className="weather-error" role="alert">{error}</p>}
         {status === "idle" && (
           <div className="weather-empty">
-            <span aria-hidden="true">☀️</span>
             <p>Your weather report will appear here.</p>
           </div>
         )}

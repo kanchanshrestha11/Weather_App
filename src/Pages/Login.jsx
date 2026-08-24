@@ -1,6 +1,11 @@
+import { useNavigate } from "react-router-dom";
+
 function Login() {
+  const navigate = useNavigate();
+
   function handleSubmit(event) {
     event.preventDefault();
+    navigate("/home");
   }
 
   return (
@@ -16,6 +21,7 @@ function Login() {
         <input
           id="email"
           type="email"
+          required
           className="mt-2 w-full rounded-lg border border-slate-300 px-4 py-3"
           placeholder="Enter your email"
         />
@@ -25,10 +31,14 @@ function Login() {
         <input
           id="password"
           type="password"
+          required
           className="mt-2 w-full rounded-lg border border-slate-300 px-4 py-3"
           placeholder="Enter your password"
         />
-        <button className="mt-6 w-full rounded-lg bg-blue-600 py-3 font-semibold text-white">
+        <button
+          type="submit"
+          className="mt-6 w-full rounded-lg bg-blue-600 py-3 font-semibold text-white"
+        >
           Log in
         </button>
       </form>

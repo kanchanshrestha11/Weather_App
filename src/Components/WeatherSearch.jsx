@@ -1,12 +1,18 @@
 import { useState } from "react";
+import useCitySuggestions from "../hooks/useCitySuggestions";
+import CitySuggestions from "./CitySuggestions";
 
-function WeatherSearch({ onSearch, loading }) {
+function WeatherSearch({ onSearch, onSelectSuggestion, loading }) {
   const [city, setCity] = useState("");
+  const [suggestions, setSuggestions] = useCitySuggestions(city);
 
   function handleSubmit(event) {
     event.preventDefault();
     const searchCity = city.trim();
-    if (searchCity) onSearch(searchCity);
+    if (searchCity) {
+      setSuggestions([]);
+      onSearch(searchCity);
+    }
   }
 
   return (
@@ -24,6 +30,14 @@ function WeatherSearch({ onSearch, loading }) {
       <button type="submit" disabled={loading || !city.trim()}>
         {loading ? "Searching..." : "Search"}
       </button>
+      <CitySuggestions
+        suggestions={suggestions}
+        onSelect={({ label, coordinates }) => {
+          setCity(label);
+          setSuggestions([]);
+          onSelectSuggestion(coordinates);
+        }}
+      />
     </form>
   );
 }

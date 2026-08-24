@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import CitySuggestions from "../Components/CitySuggestions";
+import useCitySuggestions from "../hooks/useCitySuggestions";
 import {
   fetchLocalWeather,
   fetchWeather,
@@ -9,6 +11,7 @@ import "./Home.css";
 
 function Home() {
   const [city, setCity] = useState("");
+  const [suggestions, setSuggestions] = useCitySuggestions(city);
   const [locationError, setLocationError] = useState("");
   const dispatch = useDispatch();
   const { data, status, error, favorites } = useSelector(
@@ -23,7 +26,10 @@ function Home() {
   function handleSearch(event) {
     event.preventDefault();
     const searchCity = city.trim();
-    if (searchCity) dispatch(fetchWeather(searchCity));
+    if (searchCity) {
+      setSuggestions([]);
+      dispatch(fetchWeather(searchCity));
+    }
   }
 
   function handleLocation() {
@@ -67,7 +73,6 @@ function Home() {
           </p>
 
           <form className="home-search" onSubmit={handleSearch}>
-            <span aria-hidden="true">⌕</span>
             <input
               value={city}
               onChange={(event) => setCity(event.target.value)}
@@ -77,10 +82,18 @@ function Home() {
             <button disabled={loading || !city.trim()}>
               {loading ? "Loading..." : "Search"}
             </button>
+            <CitySuggestions
+              suggestions={suggestions}
+              onSelect={({ label, coordinates }) => {
+                setCity(label);
+                setSuggestions([]);
+                dispatch(fetchLocalWeather(coordinates));
+              }}
+            />
           </form>
 
           <button className="location-button" onClick={handleLocation}>
-            <span aria-hidden="true">⌖</span> Use my current location
+            Use my current location
           </button>
           {(locationError || error) && (
             <p className="home-error" role="alert">{locationError || error}</p>
@@ -134,7 +147,6 @@ function Home() {
             </article>
           ) : (
             <article className="home-weather-card home-placeholder">
-              <div className="placeholder-sun">☀️</div>
               <h2>Your local forecast</h2>
               <p>
                 Search for a city or allow location access to see live weather
@@ -146,9 +158,9 @@ function Home() {
       </section>
 
       <section className="home-features">
-        <div><span>🌡️</span><p><strong>Live conditions</strong>Temperature and feels-like data</p></div>
-        <div><span>💨</span><p><strong>Weather details</strong>Wind, humidity and pressure</p></div>
-        <div><span>🌍</span><p><strong>Worldwide search</strong>Look up cities around the globe</p></div>
+        <div><p><strong>Live conditions</strong>Temperature and feels-like data</p></div>
+        <div><p><strong>Weather details</strong>Wind, humidity and pressure</p></div>
+        <div><p><strong>Worldwide search</strong>Look up cities around the globe</p></div>
       </section>
     </main>
   );
